@@ -13,7 +13,8 @@ config = {
     "user": user,
     'password': password,
     'host': host,
-    'auth_plugin': authplugin
+    'auth_plugin': authplugin,
+    'database': 'test'
 }
 db = mysql.connector.connect(**config)
 cursor = db.cursor()
