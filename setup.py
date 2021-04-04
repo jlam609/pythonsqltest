@@ -7,6 +7,7 @@ DB_NAME = 'test'
 
 TABLES = {}
 
+
 def insert_csv():
     df = pd.read_csv('medical_examination.csv')
     cursor.execute(f'''CREATE TABLE IF NOT EXISTS medical_examination (
@@ -33,6 +34,7 @@ def insert_csv():
 
 # insert_csv()
 
+
 TABLES['People'] = (
     """CREATE TABLE IF NOT EXISTS people (
         id int(11) NOT NULL AUTO_INCREMENT, 
@@ -41,9 +43,12 @@ TABLES['People'] = (
         PRIMARY KEY (id))
     """
 )
+
+
 def create_database():
     cursor.execute(f'CREATE DATABASE IF NOT EXISTS {DB_NAME}')
     print(f'Database {DB_NAME} created!')
+
 
 def create_tables():
     cursor.execute(f"USE {DB_NAME}")
@@ -53,7 +58,37 @@ def create_tables():
             print(f"Creating Table {table_name}")
             cursor.execute(table_description)
         except mysql.connector.Error as err:
-                print(err.msg)
+            print(err.msg)
+
+
+def selectGender():
+    cursor.execute(f"""SELECT AGE, 
+    (CASE WHEN gender = 1 THEN 'male'
+    ELSE 'female'
+    END) AS gender, height, weight
+    FROM medical_examination WHERE height >= 160""")
+    result = cursor.fetchall()
+    print(result)
+
+def createVitalSignsTable():
+    cursor.execute(f"""
+    CREATE TABLE IF NOT EXISTS vital_signs
+    AS (
+        SELECT age,
+        (CASE 
+        WHEN gender = 1 THEN 'male'
+        ELSE 'female'
+        END) AS gender, height, weight,
+        weight/ POWER(height/100, 2) as BMI,
+        (CASE 
+        WHEN weight/ POWER(height/100, 2) >= 25 THEN 'true'
+        ELSE 'false'
+        END) as overweight
+        FROM medical_examination
+    )
+    """)
+
+# createVitalSignsTable()
 
 # create_database()
 # create_tables()
