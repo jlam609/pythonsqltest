@@ -1,17 +1,17 @@
-import React, {useContext, useState} from 'react'
 
-export const ThemeContext = React.createContext()
-export const ThemeUpdateContext = React.createContext()
+import React, {ReactEventHandler, useContext, useState} from 'react'
+export const ThemeContext = React.createContext(true)
+export const ThemeUpdateContext = React.createContext(null)
 
 export function useTheme():Boolean{
     return useContext(ThemeContext)
 }
-export function useUpdateTheme():Boolean{
+export function useUpdateTheme():ReactEventHandler{
     return useContext(ThemeUpdateContext)
 }
 export const ThemeProvider:React.FC = ({children}) => {
     const [darkTheme, setDarkTheme] = useState(true)
-    function toggleTheme():void{
+    function toggleTheme(){
         setDarkTheme(prevDarkTheme => !prevDarkTheme)
     }
     return (

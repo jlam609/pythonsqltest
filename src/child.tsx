@@ -1,7 +1,6 @@
 import React from "react";
 import {useTheme, useUpdateTheme } from "./themecontext";
 
-
 const Child: React.FC = () => {
   const darkTheme = useTheme()
   const toggleTheme = useUpdateTheme()
