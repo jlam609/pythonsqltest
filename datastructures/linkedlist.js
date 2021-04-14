@@ -85,11 +85,23 @@ var DoublyLinkedList = /** @class */ (function () {
         }
         return false
     }
+    DoublyLinkedList.prototype.popHead= function () {
+        if (!this.head) return null
+        else {
+            let temp = this.head.value
+            this.head = this.head.next
+            this.head.prev = null
+            return temp
+        }
+    }
     return DoublyLinkedList;
 }());
+
 var newList = new DoublyLinkedList;
 newList.insert(10);
 newList.insert(5);
 newList.insert(7).deleteNode(7).insert(8).deleteNode(10)
-console.log(newList.containsNode(5))
-console.log(newList);
+
+module.exports = {
+    DoublyLinkedList
+}
