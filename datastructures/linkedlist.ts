@@ -74,5 +74,3 @@
 // newList.insert(10)
 // newList.insert(5)
 // newList.insert(8)
-
-console.log(newList)
