@@ -1,0 +1,86 @@
+{
+ "metadata": {
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.3"
+  },
+  "orig_nbformat": 2,
+  "kernelspec": {
+   "name": "python383jvsc74a57bd0dca0ade3e726a953b501b15e8e990130d2b7799f14cfd9f4271676035ebe5511",
+   "display_name": "Python 3.8.3 64-bit ('base': conda)"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2,
+ "cells": [
+  {
+   "source": [
+    "import praw\n",
+    "import pandas as pd\n",
+    "import os"
+   ],
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": 1,
+   "outputs": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "redditsecret = os.environ.get('redditsecret')\n",
+    "redditclient = os.environ.get('redditclient')\n",
+    "reddituser = os.environ.get('reddituser')\n",
+    "redditpassword = os.environ.get('redditpassword')\n",
+    "useragent = os.environ.get('useragent')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "reddit = praw.Reddit(client_id = redditclient,\n",
+    "                     client_secret = redditsecret,\n",
+    "                     user_agent = useragent,\n",
+    "                     username = reddituser,\n",
+    "                     password = redditpassword)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "<praw.reddit.Reddit object at 0x7fb5b7873610>\n"
+     ]
+    }
+   ],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "sub = ['wallstreetbets', 'stocks']"
+   ]
+  }
+ ]
+}
