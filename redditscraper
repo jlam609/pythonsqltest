@@ -67,20 +67,67 @@
      "output_type": "stream",
      "name": "stdout",
      "text": [
-      "<praw.reddit.Reddit object at 0x7fb5b7873610>\n"
+      "darkphoenix609\n"
      ]
     }
    ],
-   "source": []
+   "source": [
+    "print(reddit.user.me())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "sub = ['wallstreetbets', 'stocks']\n",
+    "for s in sub:\n",
+    "    subreddit = reddit.subreddit(s)\n",
+    "    query = ['Stocks']\n",
+    "    for item in query: \n",
+    "        post_dict = {\n",
+    "            'title': [],\n",
+    "            'score': [],\n",
+    "            'id': [],\n",
+    "            'url':[],\n",
+    "            'created':[],\n",
+    "            'author': []\n",
+    "        }\n",
+    "        comments_dict = {\n",
+    "            'comment_id':[],\n",
+    "            'comment_parent_id':[],\n",
+    "            'comment_body':[],\n",
+    "            'comment_link_id':[]\n",
+    "        }\n",
+    "        for submission in subreddit.search(query, sort='top', limit=3):\n",
+    "            post_dict['title'].append(submission.title)\n",
+    "            post_dict['score'].append(submission.score)\n",
+    "            post_dict['id'].append(submission.id)\n",
+    "            post_dict['url'].append(submission.url)\n",
+    "            post_dict['created'].append(submission.created)\n",
+    "            post_dict['author'].append(submission.author)\n",
+    "\n",
+    "            submission.comments.replace_more(limit=5)\n",
+    "            for comment in submission.comments.list():\n",
+    "                comments_dict['comment_id'].append(comment.id)\n",
+    "                comments_dict['comment_parent_id'].append(comment.parent_id)\n",
+    "                comments_dict['comment_body'].append(comment.body)\n",
+    "                comments_dict['comment_link_id'].append(comment.link_id)\n",
+    "    post_comments = pd.DataFrame(comments_dict)\n",
+    "    post_comments.to_csv(s +\"_comments.csv\")\n",
+    "    post_data = pd.DataFrame(post_dict)\n",
+    "    post_data.to_csv(s+ \"_item.csv\")"
+   ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
    "outputs": [],
-   "source": [
-    "sub = ['wallstreetbets', 'stocks']"
-   ]
+   "source": []
   }
  ]
 }
