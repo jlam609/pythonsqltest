@@ -23,3 +23,14 @@ def scrape(url):
         'sec-fetch-dest': 'document',
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
     }
+    r = requests.get(url, headers=headers)
+    if r.status_code > 500:
+        print(r.status_code, 'page was blocked')
+    return e.extract(r.text)
+
+with open('urls.text', 'r') as urllist, open('output.jsonl', 'w') as outfile:
+    for url in urllist.readlines():
+        data = scrape(url)
+        if data:
+            json.dump(data,outfile)
+            outfile.write("\n")
