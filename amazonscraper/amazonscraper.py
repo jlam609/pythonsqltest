@@ -8,7 +8,7 @@ import json
 from time import sleep
 
 e = Extractor.from_yaml_file('selectors.yaml')
-driver = webdriver.Chrome(ChromeDriverManager().install())
+# driver = webdriver.Chrome(ChromeDriverManager().install())
 def scrape(url):
     headers = {
         'authority':'www.amazon.com',
@@ -28,7 +28,7 @@ def scrape(url):
         print(r.status_code, 'page was blocked')
     return e.extract(r.text)
 
-with open('urls.text', 'r') as urllist, open('output.jsonl', 'w') as outfile:
+with open('urls.txt', 'r') as urllist, open('output.jsonl', 'w') as outfile:
     for url in urllist.readlines():
         data = scrape(url)
         if data:
