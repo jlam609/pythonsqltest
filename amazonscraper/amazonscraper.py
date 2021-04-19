@@ -26,7 +26,8 @@ def scrape(url):
     r = requests.get(url, headers=headers)
     if r.status_code > 500:
         print(r.status_code, 'page was blocked')
-    return e.extract(r.text)
+    else: 
+        return e.extract(r.text)
 
 with open('urls.txt', 'r') as urllist, open('output.jsonl', 'w') as outfile:
     for url in urllist.readlines():
