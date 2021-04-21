@@ -32,6 +32,7 @@ def scrape(url):
 with open('urls.txt', 'r') as urllist, open('output.jsonl', 'w') as outfile:
     for url in urllist.readlines():
         data = scrape(url)
+        print(data)
         if data:
             json.dump(data,outfile)
             outfile.write("\n")
