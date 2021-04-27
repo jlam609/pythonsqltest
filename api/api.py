@@ -1,5 +1,5 @@
 import flask
-import json
+from flask import request, jsonify
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -31,11 +31,22 @@ def home():
     """
 
 
-@app.route('/data', methods=['GET'])
-def data():
+@app.route('/api/data/all', methods=['GET'])
+def api_all():
     return (
-        flask.jsonify(books)
+        jsonify(books)
     )
 
+@app.route('/api/data', methods=['GET'])
+def api_id():
+    if 'id' in request.args:
+        id = int(request.args['id'])
+    else:
+        return 'Error: no id field provided. Please specify id'
+    results = []
+    for book in books:
+        if book['id'] == id:
+            results.append(book)
+    return jsonify(results)
 
 app.run()
