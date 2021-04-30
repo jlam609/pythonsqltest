@@ -1,7 +1,7 @@
 import json
 
 
-def lambdahandler(event, context):
+def lambda_handler(event, context):
     # 1 parse out query strings
     transactionId = event['queryStringParameters']['transactionId']
     transactionType = event['queryStringParameters']['type']
@@ -21,6 +21,6 @@ def lambdahandler(event, context):
     responseObject['headers'] = {}
     responseObject['headers']['Content-Type'] = 'application/json'
     responseObject['body'] = json.dumps(transactionResponse)
-    
+
     # 4 return response
     return responseObject
