@@ -1,0 +1,2 @@
+ignored-modules=flask_sqlalchemy
+generated-members = db.session.add|db.session.commit|db.session.merge|db.session.query|db.session.flush
