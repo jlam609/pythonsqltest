@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Button, TextField } from "@material-ui/core";
+import { Typography, Button, TextField, Table, TableContainer, TableHead, TableBody, Paper, TableRow, TableCell} from "@material-ui/core";
 
 const Budget: React.FC = () => {
   let [item, setItem] = useState("");
@@ -22,14 +22,27 @@ const Budget: React.FC = () => {
       <Typography variant="h1"> Welcome to Budget Assistance</Typography>
       <Typography variant="h3"> Add Item Here</Typography>
       {list && list.length
-        ? list.map((listItem, idx) => {
-            return (
-              <div key={idx}>
-                <p>{listItem.item}</p>
-                <p>{listItem.amount}</p>
-              </div>
-            );
-          })
+        ? <div className='budget-table'>
+           <TableContainer component={Paper}>
+              <Table stickyHeader>
+                <TableHead >
+                  <TableRow>
+                    <TableCell align="right">Name</TableCell>
+                    <TableCell align="right">Amount</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                {list.map((listItem, idx) => {
+                     return (
+                      <TableRow key={idx}>
+                        <TableCell align="right">{listItem.item}</TableCell>
+                        <TableCell align="right">${listItem.amount}</TableCell>
+                      </TableRow>
+                    )})}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         : null}
       <form onSubmit={handleSubmit}>
         <TextField

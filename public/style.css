@@ -9,3 +9,7 @@
 .budget-container > * {
   padding: 10px;
 }
+.budget-table > *{
+    align-items: center;
+    text-align: center;
+}
