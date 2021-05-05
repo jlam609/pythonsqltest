@@ -1,0 +1,11 @@
+.budget-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.budget-container > * {
+  padding: 10px;
+}

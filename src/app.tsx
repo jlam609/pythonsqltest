@@ -1,16 +1,14 @@
 import React from 'react'
-import Child from './child'
-import Counter from './counter'
-import { ThemeProvider } from './themecontext'
+import Budget from './budget'
+// import Child from './child'
+// import Counter from './counter'
+// import { ThemeProvider } from './themecontext'
 
 
 
 const App:React.FC = () => {
     return (
-       <ThemeProvider>
-           <Child/>
-           <Counter/>
-       </ThemeProvider>
+      <Budget/>
     )
 }
 export default App
